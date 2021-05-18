@@ -27,26 +27,29 @@ void vector_push(vector *v, int n)
   if (v->length == v->capacity)
   {
     int new_capacity = v->capacity * 2;
-    int *new_data = (int *)malloc(new_capacity);
+    int *new_data = (int *)malloc(new_capacity*sizeof(int));
     assert(new_data != NULL);
 
-    for (int i = 0; i < v->length; ++i)
+    for (int i = 0; (i < v->length); ++i)
     {
-      new_data[i] = v->data[i];
+      new_data[i] = (v->data)[i];
     }
 
+    int *x= (v->data);
     v->data = new_data;
     v->capacity = new_capacity;
+    free(x);
+    
   }
 
-  v->data[v->length] = n;
-  ++v->length;
+  (v->data)[v->length] = n;
+  ++(v->length);
 }
 
 void vector_free(vector *v)
 {
-  free(v);
   free(v->data);
+  free(v);
 }
 
 void main()
@@ -54,10 +57,9 @@ void main()
   vector *v = vector_new();
   vector_push(v, 107);
 
-  int *n = &v->data[0];
+  int *n = &(v->data[0]);
   vector_push(v, 110);
   printf("%d\n", *n);
 
-  free(v->data);
   vector_free(v);
 }
