@@ -39,7 +39,7 @@ int main()
       else {  a.push_back(ch[t]);  }
     }
 
-    try {                                      // calculation of expression along with expression handling
+    try {                                      // calculation of expression along with exception handling
        if(sup_flag!=0) {
            if(sign[0]=='*') {
                  if(sign[1]=='+') { cout<<(num[0]*num[1]+num[2]); }
